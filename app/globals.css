@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Merriweather:wght@400;700&display=swap');
+
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-sans: 'Inter', Arial, Helvetica, sans-serif;
+  --font-serif: 'Merriweather', Georgia, serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,8 +20,22 @@
   }
 }
 
+
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-background text-foreground;
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: bold;
+}
+
+
+.container {
+  @apply mx-auto px-4 sm:px-6 lg:px-8;
 }

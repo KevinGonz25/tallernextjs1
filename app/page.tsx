@@ -1,8 +1,25 @@
 import Image from "next/image";
+import { useState, useEffect } from "react"; // Importamos useState y useEffect
 
 export default function Home() {
+  // Estado para el contador
+  const [count, setCount] = useState<number>(0);
+
+  // Efecto que se ejecuta al montar el componente
+  useEffect(() => {
+    console.log("Componente montado o actualizado.");
+    return () => {
+      console.log("Componente desmontado.");
+    };
+  }, []); // El efecto se ejecuta solo una vez al montar el componente
+
+  // Función para manejar el clic del botón
+  const handleButtonClick = () => {
+    setCount(prevCount => prevCount + 1); // Incrementa el contador
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-sans">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
@@ -12,7 +29,7 @@ export default function Home() {
           height={38}
           priority
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-serif">
           <li className="mb-2">
             Get started by editing{" "}
             <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
@@ -22,6 +39,18 @@ export default function Home() {
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
+
+        <div className="flex flex-col items-center gap-4">
+          <button
+            className="rounded-full bg-blue-500 text-white px-6 py-2 hover:bg-blue-600"
+            onClick={handleButtonClick}
+          >
+            Incrementar contador
+          </button>
+
+          {/* Mostrar el contador */}
+          <p className="mt-4 text-lg font-bold">Contador: {count}</p>
+        </div>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a
